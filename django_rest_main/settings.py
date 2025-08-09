@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'students',  # Custom app for managing students
+    'api', # API endpoint
 ]
 
 MIDDLEWARE = [
