@@ -5,5 +5,6 @@ from students.models import Student
 # Create your views here.
 def studentsView(request):
     students = Student.objects.all()
-    print(students)
-    return JsonResponse(students)
+    students_list = list(students.values())
+    print(students_list)
+    return JsonResponse(students_list, safe=False)
