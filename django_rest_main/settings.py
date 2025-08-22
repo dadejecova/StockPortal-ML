@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'students',  # Custom app for managing students
     'api', # API endpoint
+    'employees',  # Custom app for managing employees
 ]
 
 MIDDLEWARE = [
