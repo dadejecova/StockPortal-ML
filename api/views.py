@@ -1,3 +1,4 @@
+from django.shortcuts import render, get_object_or_404
 from students.models import Student
 from .serializers import StudentSerializer, EmployeeSerializer
 from rest_framework.response import Response
@@ -6,7 +7,7 @@ from rest_framework.decorators import api_view
 from rest_framework.views import APIView
 from employees.models import Employee
 from django.http import Http404
-from rest_framework import mixins, generics
+from rest_framework import mixins, generics, viewsets
 # Create your views here.
 
 @api_view(['GET', 'POST'])
@@ -47,39 +48,6 @@ def studentsDetailView(request, pk):
         student.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-# mixin
-'''
-class Employees(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+class EmployeeViewset(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
-
-    def get(self, request):
-        return self.list(request)
-    
-    def post(self, request):
-        return self.create(request)
-    
-class EmployeeDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
-    queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
-
-    def get(self, request, pk):
-        return self.retrieve(request, pk)
-    
-    def put(self, request, pk):
-        return self.update(request, pk)
-    
-    def delete(self, request, pk):
-        return self.destroy(request, pk)
-'''
-
-class Employees(generics.ListAPIView, generics.CreateAPIView):
-    queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
-    
-
-class EmployeeDetail(generics.RetrieveAPIView, generics.UpdateAPIView, generics.DestroyAPIView):
-    queryset = Employee.objects.all()
-    serializer_class = EmployeeSerializer
-    lookup_field = 'pk'
-
