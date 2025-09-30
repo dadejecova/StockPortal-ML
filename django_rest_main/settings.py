@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'students',  # Custom app for managing students
     'api', # API endpoint
     'employees',  # Custom app for managing employees
+    'blogs',  # Custom app for managing blogs
 ]
 
 MIDDLEWARE = [
