@@ -9,5 +9,8 @@ urlpatterns = [
     # Define your API endpoints here
     path('students/', views.studentsView),
     path('students/<int:pk>/', views.studentsDetailView),
-    path('', include(router.urls))
+    path('', include(router.urls)),
+
+    path('blogs/', views.BlogView.as_view()),
+    path('comments/', views.CommentView.as_view()),
 ]
