@@ -10,6 +10,8 @@ from rest_framework.views import APIView
 from employees.models import Employee
 from django.http import Http404
 from rest_framework import mixins, generics, viewsets
+from .pagination import CustomPagination
+from employees.filters import EmployeeFilter
 # Create your views here.
 
 @api_view(['GET', 'POST'])
@@ -53,6 +55,8 @@ def studentsDetailView(request, pk):
 class EmployeeViewset(viewsets.ModelViewSet):
     queryset = Employee.objects.all()
     serializer_class = EmployeeSerializer
+    pagination_class = CustomPagination
+    filterset_class = EmployeeFilter
 
 class BlogView(generics.ListCreateAPIView):
     queryset = Blog.objects.all()
